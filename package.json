@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "version": "1.0.0",
+  "description": "Deck created with mdx-deck",
+  "scripts": {
+    "start": "mdx-deck deck.mdx",
+    "build": "mdx-deck build deck.mdx",
+    "pdf": "mdx-deck pdf deck.mdx",
+    "image": "mdx-deck screenshot deck.mdx",
+    "help": "mdx-deck"
+  },
+  "keywords": [],
+  "author": "Brent Jackson",
+  "license": "MIT",
+  "devDependencies": {
+    "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^3.0.2",
+    "mdx-deck": "^1.10.0",
+    "mdx-deck-code-surfer": "^0.5.5",
+    "prism-react-renderer": "^0.1.5",
+    "raw-loader": "^1.0.0",
+    "recharts": "^1.4.2"
+  },
+  "name": "package-application-presentation",
+  "dependencies": {
+    "react-youtube": "^7.9.0"
+  }
+}

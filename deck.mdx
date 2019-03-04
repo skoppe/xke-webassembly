@@ -1,0 +1,287 @@
+import { Head, Appear, Image, Split, FullScreenCode } from 'mdx-deck'
+export { default as theme } from 'mdx-deck/themes'
+import ArchiveIcon from '@material-ui/icons/Archive';
+import NatureIcon from '@material-ui/icons/Nature';
+import ComputerIcon from '@material-ui/icons/Computer';
+import oceanicNext from "prism-react-renderer/themes/oceanicNext"
+import dracula from "prism-react-renderer/themes/dracula"
+import { CodeSurfer } from "mdx-deck-code-surfer"
+import { LineChart, Line, XAxis, YAxis,
+  CartesianGrid, Legend, 
+  Label, LabelList } from 'recharts';
+import YouTube from "react-youtube";
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='wasm.jpg'/>
+
+---
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='wat.png'/>
+
+---
+
+## History
+
+- late 2017, Mozilla declared support "in all major browsers"
+- 2015 WebAssembly was first announced
+- 2013 asm.js first announced
+
+---
+
+#### At the 2013 Game Developers’ Conference, Mozilla announced a port of Unreal Engine 3 running in Firefox
+
+<YouTube videoId="BV32Cs_CMqo" opts={{height:500, width:700}}/>
+---
+
+## what is asm.js
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='llvm.png'/>
+
+---
+
+## unreal engine asm.js code
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "90vw", height:"75vh"}} src='js-code-unreal-engine.jpg'/>
+
+---
+
+## why no more asm.js?
+
+<ul style={{fontSize:'2rem'}}>
+<li>The kind of binary format being considered for WebAssembly can be natively decoded much faster than JavaScript can be parsed (experiments show more than 20× faster). On mobile, large compiled codes can easily take 20–40 seconds just to parse, so native decoding (especially when combined with other techniques like streaming for better-than-gzip compression) is critical to providing a good cold-load user experience</li>
+<br/>
+<li>By avoiding the simultaneous asm.js constraints of AOT-compilability and good performance even on engines without specific asm.js optimizations, a new standard makes it much easier to add the features 🦄 required to reach native levels of performance</li>
+</ul>
+
+```notes
+basically asm.js was slow to load. and slow to parse.
+```
+---
+
+## WebAssembly support now shipping in all major browsers
+## November 13, 2017
+
+- big milestone
+- first ever widely shared ISA (Mozilla, Microsoft, Google, Apple)
+
+```notes
+a really big milestone
+the first time in history so many big players commit to a common ISA. the closest we ever came is with java bytecode.
+```
+
+---
+
+- a stack machine
+- a compilation target
+- a binary format
+- a sandboxed vm
+- universal binary
+
+```notes
+universal binary is a term introduced by apple in 2005. it originally meant a binary that could run on both powerpc and intel. its a fitting term for a binary that runs both in the browser, in headless runtimes.
+
+ofcourse, we are hardly there. besides emscripten each language that compiles to webassembly has its onw glue code with js. and there is no common abi yet.
+there are several projects that define that, e.g. cloud abi.
+---
+
+<CodeSurfer
+title="Factorial"
+code={require("!raw-loader!./snippets/factorial.wast")}
+theme={dracula}
+lang="js"
+showNumbers={false}
+dark={false}
+    />
+
+```notes
+here is a factorial implementation in web assembly s expression format
+you can see the low level instructions (https://webassembly.github.io/spec/core/syntax/instructions.html)
+- allows near native execution speeds
+```
+
+---
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='factorial.png'/>
+
+```notes
+here the original c source. and the wasm binary representation
+```
+
+---
+
+<div style={{fontSize:'1.5rem'}}>
+<CodeSurfer
+title="Around forty languages compile to webassembly"
+code={require("!raw-loader!./snippets/todo-mvc.hs")}
+theme={dracula}
+lang="haskell"
+showNumbers={false}
+dark={false}
+    />
+    </div>
+
+```notes
+many languages. this is haskell. often you'll only see c/c++ and rust. but there are plenty more.
+```
+---
+
+### Use Cases 1
+
+<ul style={{fontsize:'1rem',textAlign:'left'}}>
+<li><a href="https://mbasso.github.io/asm-dom">A minimal WebAssembly virtual DOM to build C++ SPA</a></li>
+<li><a href="https://github.com/DenisKolodin/yew">Rust framework for building client web apps</a></li>
+<li><a href="https://blazor.net/">Blazor is an .NET web framework using C#/Razor and HTML that runs in the browser</a></li>
+<li>Image / video editing.</li>
+<li>Casual games, AAA games.</li>
+<li>Peer-to-peer applications (games, collaborative editing, decentralized and centralized).</li>
+<li>Music applications (streaming, caching).</li>
+<li>Image recognition.</li>
+<li>Live video augmentation (e.g. putting hats on people's heads).</li>
+<li>VR and augmented reality (very low latency).</li>
+<li>CAD applications.</li>
+</ul>
+---
+
+### Use Cases 2
+
+<ul style={{fontsize:'1rem',textAlign:'left'}}>
+<li>Scientific visualization and simulation.</li>
+<li>Interactive educational software, and news articles.</li>
+<li>Platform simulation / emulation (ARC, DOSBox, QEMU, MAME, …).</li>
+<li>Language interpreters and virtual machines.</li>
+<li>POSIX user-space environment, allowing porting of existing POSIX applications.</li>
+<li>Developer tooling (editors, compilers, debuggers, …).</li>
+<li>Remote desktop.</li>
+<li>VPN.</li>
+<li>Encryption.</li>
+<li>Local web server.</li>
+<li>Common NPAPI users, within the web's security model and APIs.</li>
+<li>Fat client for enterprise applications (e.g. databases).</li>
+</ul>
+
+---
+
+### Plenty of todo mvc's
+
+- [C++](https://mbasso.github.io/asm-dom/examples/todomvc/)
+- [Haskell](https://www.tweag.io/wasm-todomvc/)
+- [Rust](https://yew.now.sh/)
+- [D](https://skoppe.github.io/spasm/examples/todo-mvc/)
+
+---
+
+### Demo
+
+<a href="https://bellard.org/jslinux/vm.html?url=https://bellard.org/jslinux/win2k.cfg&mem=192&graphic=1&w=1024&h=768">
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"60vh"}} src='wasm-windows-2000.jpg'/>
+</a>
+
+---
+
+### Unreal again
+
+<YouTube videoId="TwuIRcpeUWE" opts={{height:500, width:700}}/>
+
+---
+
+<a href="https://sandspiel.club/">sandspiel</a><br/>
+<a href="https://ctrl-alt-d.github.io/BlazorConfirm/">Blazor</a><br/>
+<a href="https://www.figma.com/">figma</a><br/>
+<a href="https://web.autocad.com/acad/mailr237c/drawings/566795909/editor">AutoCAD</a>
+
+---
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='wasm-mvp.png'/>
+
+```notes
+so this is where we are. the mvp.
+```
+
+---
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='wasm-heavyweight-progress.png'/>
+
+```notes
+threading is in nightly preview of browsers.
+load time improvement are made. firefox can parse 60mb/s
+---
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='wasm-js-interop-progress.png'/>
+
+---
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='wasm-high-level-progress.png'/>
+
+---
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='wasm-runtime-progress.png'/>
+
+```notes
+there is no shared runtime. but a lot of platforms define their own. cloudflare workers
+```
+---
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='js-vs-wasm.gif'/>
+
+```notes
+Not a good comparison
+javascript and webassembly are on a different level
+```
+
+---
+
+## phrased a little different
+
+- is webassembly easier to parse and compile?
+- is webassembly an more efficient format?
+
+---
+
+## put another way
+
+- can webassembly enable something that outperforms javascript?
+
+```notes
+These are so many languages compiling to wasm. One of them must be better.
+```
+---
+
+## javascript has no compiler/optimiser
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='llvm.png'/>
+
+```notes
+Because there is no compiler or optimiser it is really hard to create zero-cost abstractions.
+Abstractions we like. but come at runtime cost.
+```
+
+---
+
+### Webassembly is not just for the web
+
+Universal binaries
+
+<ul style={{fontsize:'1rem',textAlign:'left'}}>
+<li><a href="https://github.com/lsds/Faasm">High performance serverless runtime based on WebAssembly</a></li>
+<li><a href="https://github.com/nebulet/nebulet">A microkernel that implements a WebAssembly "usermode" that runs in Ring 0.</a></li>
+<li><a href="https://github.com/piranna/wasmachine">Put WebAssembly in your washing machine</a></li>
+<li><a href="https://wasmer.io">Universal Binaries Powered by WebAssembly</a></li>
+<li><a href="https://www.fastlylabs.com/">Run webassembly on the edge</a></li>
+<li><a href="https://blog.cloudflare.com/cloud-computing-without-containers/">Cloud Computing without Containers</a> - <a href="https://skoppe.nl/hello">hello world</a></li>
+</ul>
+
+```notes
+cloudflare workers are impressive. super fast load times. strict memory. good security.
+```
+
+---
+
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='wasm-security.png'/>
+
+```notes
+still issues ofcourse. very fresh. I read an article about bug with webassembly. but since it is so simple, most of the bugs were in the parser.
+```
+
+---
+
+
+
