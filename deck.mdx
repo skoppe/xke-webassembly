@@ -44,16 +44,13 @@ import YouTube from "react-youtube";
 
 ---
 
-## why no more asm.js?
+### why no more asm.js?
 
-<ul style={{fontSize:'2rem'}}>
-<li>The kind of binary format being considered for WebAssembly can be natively decoded much faster than JavaScript can be parsed (experiments show more than 20× faster). On mobile, large compiled codes can easily take 20–40 seconds just to parse, so native decoding (especially when combined with other techniques like streaming for better-than-gzip compression) is critical to providing a good cold-load user experience</li>
-<br/>
-<li>By avoiding the simultaneous asm.js constraints of AOT-compilability and good performance even on engines without specific asm.js optimizations, a new standard makes it much easier to add the features 🦄 required to reach native levels of performance</li>
-</ul>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"70vh"}} src='statics/slow-js-parse.png'/>
 
 ```notes
 basically asm.js was slow to load. and slow to parse.
+WebAssembly 20x faster to parse than JavaScript. On mobile, large compiled codes can easily take 20–40 seconds just to parse
 ```
 ---
 
@@ -122,6 +119,7 @@ dark={false}
 ```notes
 many languages. this is haskell. often you'll only see c/c++ and rust. but there are plenty more.
 ```
+
 ---
 
 ### Use Cases 1
@@ -193,7 +191,7 @@ many languages. this is haskell. often you'll only see c/c++ and rust. but there
 <Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/wasm-mvp.png'/>
 
 ```notes
-so this is where we are. the mvp.
+so this is where we are. the mvp. liniear memory is pretty secure.
 ```
 
 ---
@@ -201,12 +199,21 @@ so this is where we are. the mvp.
 <Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/wasm-heavyweight-progress.png'/>
 
 ```notes
+adobe already provides lightroom in browers. but we need more.
 threading is in nightly preview of browsers.
 load time improvement are made. firefox can parse 60mb/s
+store pcompiled code in HTTP cache. use precompiled code on re-visists.
+```
 ---
 
 <Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/wasm-js-interop-progress.png'/>
 
+```notes
+One example is the parser source map library for Firefox’s DevTools and webpack. rewritten in Rust, compiled to WebAssembly, 11x faster.
+WordPress’s Gutenberg parser is on average 86x faster after doing the same kind of rewrite.
+faster than non-inlined JavaScript to JavaScript calls.
+What’s the npm for WebAssembly? Well, what about npm?
+```
 ---
 
 <Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/wasm-high-level-progress.png'/>
@@ -275,5 +282,170 @@ still issues ofcourse. very fresh. I read an article about bug with webassembly.
 
 ---
 
+<h2>Standardized proposals</h2>
+<table>
+<thead>
+<tr>
+<th>Proposal</th>
+<th>Champion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WebAssembly/mutable-global">Import/Export of Mutable Globals</a></td>
+<td>Ben Smith</td>
+</tr>
+</tbody>
+</table>
 
+---
+
+<h2>Active proposals</h2>
+<h3>Phase 4 - Standardize the Feature (WG)</h3>
+<table>
+<thead>
+<tr>
+<th>Proposal</th>
+<th>Champion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WebAssembly/nontrapping-float-to-int-conversions">Non-trapping float-to-int conversions</a></td>
+<td>Dan Gohman</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WebAssembly/sign-extension-ops/blob/master/proposals/sign-extension-ops/Overview.md">Sign-extension operators</a></td>
+<td>Ben Smith</td>
+</tr>
+</tbody>
+</table>
+
+---
+
+<h3>Phase 3 - Implementation Phase (CG + WG)</h3>
+<table>
+<thead>
+<tr>
+<th>Proposal</th>
+<th>Champion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WebAssembly/multi-value">Multi-value</a></td>
+<td>Andreas Rossberg</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WebAssembly/reference-types">Reference Types</a></td>
+<td>Andreas Rossberg</td>
+</tr>
+<tr>
+<td><a href="https://github.com/webassembly/tail-call">Tail call</a></td>
+<td>Andreas Rossberg</td>
+</tr>
+</tbody>
+</table>
+
+---
+
+<h3>Phase 2 - Proposed Spec Text Available (CG + WG)</h3>
+<table>
+<thead>
+<tr>
+<th>Proposal</th>
+<th>Champion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WebAssembly/JS-BigInt-integration">JavaScript BigInt to WebAssembly i64 integration</a></td>
+<td>Dan Ehrenberg</td>
+</tr>
+<tr>
+<td><a href="https://github.com/webassembly/bulk-memory-operations">Bulk memory operations</a></td>
+<td>Ben Smith</td>
+</tr>
+<tr>
+<td><a href="https://github.com/webassembly/threads/blob/master/proposals/threads/Overview.md">Threads</a></td>
+<td>Ben Smith</td>
+</tr>
+</tbody>
+</table>
+
+---
+
+<h3>Phase 1 - Feature Proposal (CG)</h3>
+<table>
+<thead>
+<tr>
+<th>Proposal</th>
+<th>Champion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WebAssembly/annotations/blob/master/proposals/annotations/Overview.md">Custom Annotation Syntax in the Text Format</a></td>
+<td>Andreas Rossberg</td>
+</tr>
+<tr>
+<td><a href="https://github.com/webassembly/esm-integration">ECMAScript module integration</a></td>
+<td>Lin Clark</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WebAssembly/exception-handling/blob/master/proposals/Exceptions.md">Exception handling</a></td>
+<td>Heejin Ahn</td>
+</tr>
+<tr>
+<td><a href="https://github.com/webassembly/simd/blob/master/proposals/simd/SIMD.md">Fixed-width SIMD</a></td>
+<td>Peter Jensen and Arun Purushan</td>
+</tr>
+<tr>
+<td><a href="https://github.com/webassembly/gc/blob/master/proposals/gc/Overview.md">Garbage collection</a></td>
+<td>Andreas Rossberg</td>
+</tr>
+<tr>
+<td><a href="https://github.com/webassembly/host-bindings">Host bindings</a></td>
+<td>Luke Wagner</td>
+</tr>
+<tr>
+<td><a href="https://github.com/webassembly/js-types/blob/master/proposals/js-types/Overview.md">Type Reflection for WebAssembly JavaScript API</a></td>
+<td>Till Schneidereit</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WebAssembly/wasm-c-api">WebAssembly C and C++ API</a></td>
+<td>Andreas Rossberg</td>
+</tr>
+</tbody>
+</table>
+
+---
+
+<h3>Phase 0 - Pre-Proposal (CG)</h3>
+<table>
+<thead>
+<tr>
+<th>Proposal</th>
+<th>Champion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/WebAssembly/function-references">Typed Function References</a></td>
+<td>Andreas Rossberg</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WebAssembly/proposals/issues/6">Unmanaged closures</a></td>
+<td>Mark Miller</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WebAssembly/content-security-policy/blob/master/proposals/CSP.md">Web Content Security Policy</a></td>
+<td>Ben Titzer</td>
+</tr>
+<tr>
+<td><a href="https://github.com/WebAssembly/funclets">Funclets: Flexible Intraprocedural Control Flow</a></td>
+<td>Dan Gohman</td>
+</tr>
+</tbody>
+</table>
 
