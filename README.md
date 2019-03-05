@@ -1,4 +1,4 @@
-# Packaging Applications Presentation
+# WebAssembly Knowledge Session Xebia 2019-03
 
 This was generated with [mdx-deck][]'s `npm init deck` command.
 
