@@ -11,11 +11,11 @@ import { LineChart, Line, XAxis, YAxis,
   Label, LabelList } from 'recharts';
 import YouTube from "react-youtube";
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='docs/wasm.jpg'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='statics/wasm.jpg'/>
 
 ---
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='docs/wat.png'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='statics/wat.png'/>
 
 ---
 
@@ -34,13 +34,13 @@ import YouTube from "react-youtube";
 
 ## what is asm.js
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='docs/llvm.png'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/llvm.png'/>
 
 ---
 
 ## unreal engine asm.js code
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "90vw", height:"75vh"}} src='docs/js-code-unreal-engine.jpg'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "90vw", height:"75vh"}} src='statics/js-code-unreal-engine.jpg'/>
 
 ---
 
@@ -100,7 +100,7 @@ you can see the low level instructions (https://webassembly.github.io/spec/core/
 
 ---
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='docs/factorial.png'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='statics/factorial.png'/>
 
 ```notes
 here the original c source. and the wasm binary representation
@@ -172,7 +172,7 @@ many languages. this is haskell. often you'll only see c/c++ and rust. but there
 ### Demo
 
 <a href="https://bellard.org/jslinux/vm.html?url=https://bellard.org/jslinux/win2k.cfg&mem=192&graphic=1&w=1024&h=768">
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"60vh"}} src='docs/wasm-windows-2000.jpg'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"60vh"}} src='statics/wasm-windows-2000.jpg'/>
 </a>
 
 ---
@@ -190,7 +190,7 @@ many languages. this is haskell. often you'll only see c/c++ and rust. but there
 
 ---
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='docs/wasm-mvp.png'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/wasm-mvp.png'/>
 
 ```notes
 so this is where we are. the mvp.
@@ -198,29 +198,29 @@ so this is where we are. the mvp.
 
 ---
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='docs/wasm-heavyweight-progress.png'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/wasm-heavyweight-progress.png'/>
 
 ```notes
 threading is in nightly preview of browsers.
 load time improvement are made. firefox can parse 60mb/s
 ---
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='docs/wasm-js-interop-progress.png'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/wasm-js-interop-progress.png'/>
 
 ---
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='docs/wasm-high-level-progress.png'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/wasm-high-level-progress.png'/>
 
 ---
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='docs/wasm-runtime-progress.png'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/wasm-runtime-progress.png'/>
 
 ```notes
 there is no shared runtime. but a lot of platforms define their own. cloudflare workers
 ```
 ---
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='docs/js-vs-wasm.gif'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "100vw", height:"75vh"}} src='statics/js-vs-wasm.gif'/>
 
 ```notes
 Not a good comparison
@@ -238,7 +238,7 @@ javascript and webassembly are on a different level
 
 ## javascript has no compiler/optimiser
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='docs/llvm.png'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/llvm.png'/>
 
 ```notes
 Because there is no compiler or optimiser it is really hard to create zero-cost abstractions.
@@ -267,7 +267,7 @@ cloudflare workers are impressive. super fast load times. strict memory. good se
 
 ---
 
-<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='docs/wasm-security.png'/>
+<Image css={{backgroundSize:"contain", marginTop: "1em", width: "70vw", height:"75vh"}} src='statics/wasm-security.png'/>
 
 ```notes
 still issues ofcourse. very fresh. I read an article about bug with webassembly. but since it is so simple, most of the bugs were in the parser.
